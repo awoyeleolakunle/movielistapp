@@ -1,59 +1,70 @@
 
 [
+
+
     { 
         "id": 1, 
+        "title": "A Tribe Called Judah", 
+        "genre": " Comedy",
+        "director": "",
+        "movieImage": "https://www.bellanaija.com/wp-content/uploads/2023/11/5179867F-9E31-48F5-A0CE-2F69EB3EF9A0.jpeg"
+    },
+
+ 
+    { 
+        "id": 2, 
+        "title": "The Shawshank Redemption", 
+        "genre": "Drama",
+        "director": "",
+        "movieImage": "https://th.bing.com/th/id/OIP.W7BHpSd7QvCQoq6VXG3YtwHaFj?pid=ImgDet&w=175&h=131&c=7&dpr=1.1"
+    },
+
+
+    { 
+        "id": 3, 
+        "title": "The Shawshank Redemption", 
+        "genre": "Drama",
+        "director": "",
+        "movieImage": "https://th.bing.com/th/id/R.fee32817f6beabacab268bc9a6d82fda?rik=r%2bl59w8nwuBXWg&pid=ImgRaw&r=0"
+    },
+
+
+    { 
+        "id": 4, 
+        "title": "The Shawshank Redemption", 
+        "genre": "Drama",
+        "director": "",
+        "movieImage": "data:image/jpeg;base64,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"
+    },
+    { 
+        "id": 5, 
+        "title": "The Shawshank Redemption", 
+        "genre": "Drama",
+        "director": "",
+        "movieImage": "https://th.bing.com/th/id/OIP.GsgO8yEncUOQq3kM_NyJ4AHaD5?w=330&h=180&c=7&r=0&o=5&pid=1.7"
+    },
+
+
+    { 
+        "id": 6, 
+        "title": "The Shawshank Redemption", 
+        "genre": "Drama",
+        "director": "",
+        "movieImage": "https://th.bing.com/th/id/OIP.wZmyl20x7tM5j6MnfZ_qzAHaJ4?w=134&h=180&c=7&r=0&o=5&pid=1.7"
+    },
+    { 
+        "id": 7, 
+        "title": "The Shawshank Redemption", 
+        "genre": "Drama",
+        "movieImage": "https://th.bing.com/th/id/OIP.AKMJaWGLSZTSs0KldbODEQHaEK?w=315&h=180&c=7&r=0&o=5&pid=1.7"
+    },
+
+    { 
+        "id": 8, 
         "title": "Inception", 
         "genre": "Anime",
-        "movieImage": "https://th.bing.com/th/id/OIP.W7BHpSd7QvCQoq6VXG3YtwHaFj?pid=ImgDet&w=175&h=131&c=7&dpr=1.1"
-    },
-    { 
-        "id": 2, 
-        "title": "The Shawshank Redemption", 
-        "genre": "Drama",
-        "movieImage": "https://th.bing.com/th/id/OIP.W7BHpSd7QvCQoq6VXG3YtwHaFj?pid=ImgDet&w=175&h=131&c=7&dpr=1.1"
-    },
-
-
-    { 
-        "id": 2, 
-        "title": "The Shawshank Redemption", 
-        "genre": "Drama",
-        "movieImage": "https://th.bing.com/th/id/OIP.W7BHpSd7QvCQoq6VXG3YtwHaFj?pid=ImgDet&w=175&h=131&c=7&dpr=1.1"
-    },
-
-
-    { 
-        "id": 2, 
-        "title": "The Shawshank Redemption", 
-        "genre": "Drama",
-        "movieImage": "https://th.bing.com/th/id/OIP.W7BHpSd7QvCQoq6VXG3YtwHaFj?pid=ImgDet&w=175&h=131&c=7&dpr=1.1"
-    },
-    { 
-        "id": 2, 
-        "title": "The Shawshank Redemption", 
-        "genre": "Drama",
-        "movieImage": "https://th.bing.com/th/id/OIP.W7BHpSd7QvCQoq6VXG3YtwHaFj?pid=ImgDet&w=175&h=131&c=7&dpr=1.1"
-    },
-
-
-    { 
-        "id": 2, 
-        "title": "The Shawshank Redemption", 
-        "genre": "Drama",
-        "movieImage": "https://th.bing.com/th/id/OIP.W7BHpSd7QvCQoq6VXG3YtwHaFj?pid=ImgDet&w=175&h=131&c=7&dpr=1.1"
-    },
-    { 
-        "id": 2, 
-        "title": "The Shawshank Redemption", 
-        "genre": "Drama",
-        "movieImage": "https://th.bing.com/th/id/OIP.W7BHpSd7QvCQoq6VXG3YtwHaFj?pid=ImgDet&w=175&h=131&c=7&dpr=1.1"
-    },
-
-
-    { 
-        "id": 2, 
-        "title": "The Shawshank Redemption", 
-        "genre": "Drama",
-        "movieImage": "https://th.bing.com/th/id/OIP.W7BHpSd7QvCQoq6VXG3YtwHaFj?pid=ImgDet&w=175&h=131&c=7&dpr=1.1"
+        "director": "",
+        "movieImage": "https://th.bing.com/th?id=OIP.rG-DP8mf9cLDJxw9KTKeRwAAAA&w=250&h=250&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
     }
+  
 ]

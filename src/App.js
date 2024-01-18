@@ -1,15 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
-
-import { MovieList } from './pages/components/movies';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { MovieList } from './pages/page1/components/movies';
+import { SelectedMovie } from './pages/page2/component/selectedMoviePage';
+import {ParentComponent} from './pages/parentComponet/component/parent';
+import { AddAMovie } from './pages/addMoviePage/component/addMovie';
 
 function App() {
   return (
     <div className="App">
 
-    <MovieList/>
+  {/* <MovieList/> */}
+      <Router>
 
-
+            <Routes>
+              <Route path="/" element={<MovieList/>}/>
+              <Route  path="/selectedMoviePage" element={<SelectedMovie/>}/> 
+              <Route path="/addMovie" element={<AddAMovie/>}/>
+    
+            </Routes> 
+      </Router>
+     
+  
 
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

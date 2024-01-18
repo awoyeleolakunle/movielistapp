@@ -3,10 +3,13 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../styles/movie.css';
 
-export const MovieList = () => {
+
+export const MovieList = ({ nav }) => {
   const [listOfMovies, setListOfMovies] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -20,41 +23,52 @@ export const MovieList = () => {
     };
 
     fetchMovies();
-  }, []);
+  }, [nav]);
 
   console.log("I'm the list of movies : ", listOfMovies);
 
+
+
+  const showSelectedMovieDetails = (movieId)=>{
+navigate(`/selectedMoviePage?movieid=${encodeURIComponent(JSON.stringify(movieId))}`)
+
+  }
+
   return (
     <div className='mainContainer'>
-
-
        
-
-        <nav className='navListElements'>
+       <nav className='navListElements'>
 
         <img className='movieLogo' src="https://th.bing.com/th?id=OIP.HYkwHkkaBsGSnIsLJFZ79QHaFf&w=290&h=215&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2" alt="" />
             <ul>
                 <li>All Shows</li>
                 <li>Movies</li>
                 <li>TV shows</li>
-                <li>People</li>
+                <li onClick={()=>navigate("/addMovie")}>Add a movie</li>
             </ul>
-        </nav>
+        </nav> 
 
-      Movie list
+
+
+      <div className='bainedCinema'> Welcome to Bained Cinema</div>
        
       <div className='rightFixedDisplay'>
 
 
       <ul className="listToBeDisplayed"  >
         {listOfMovies.map(movie=> (
-          <li  key={movie.id}>
+          <li  key={movie.id}
+          
+          onClick={()=>showSelectedMovieDetails(movie.id)}
+          >
             <div className='movieDetails'>
-              <img className='movieImageLink' src={movie.movieImage} alt="Not found" />
+              <img className='movieImageLink' src={movie.movieImage} alt="Not found"     style={{ width: '110%', height: '200px', maxHeight: '100%' }}/>
               <div className='otherMovieDetails'>
+                <p>Director : {movie.director}</p>
               <p>Genre : {movie.genre}</p>
               <p>Title: {movie.title}</p>
               <p>Id : {movie.id}</p>
+             
               </div>
 
             </div>
@@ -66,13 +80,18 @@ export const MovieList = () => {
       </div>
       <ul className="listToBeDisplayed" >
         {listOfMovies.map(movie=> (
-          <li  key={movie.id}>
+          <li  key={movie.id}
+          
+           
+          onClick={()=>showSelectedMovieDetails(movie.id)}
+          >
             <div className='movieDetails'>
-              <img className='movieImageLink' src={movie.movieImage} alt="Not found" />
+              <img className='movieImageLink' src={movie.movieImage} alt="Not found"    style={{ width: '100%', height: '200px', maxHeight: '100%' }} />
               <div className='otherMovieDetails'>
               <p>Genre : {movie.genre}</p>
               <p>Title : {movie.title}</p>
               <p>Id : {movie.id}</p>
+           
               </div>
             </div>
           </li>
