@@ -54,6 +54,7 @@ export const MovieList = () => {
               <div className='otherMovieDetails'>
               <p>Genre : {movie.genre}</p>
               <p>Title: {movie.title}</p>
+              <p>Id : {movie.id}</p>
               </div>
 
             </div>
@@ -71,6 +72,7 @@ export const MovieList = () => {
               <div className='otherMovieDetails'>
               <p>Genre : {movie.genre}</p>
               <p>Title : {movie.title}</p>
+              <p>Id : {movie.id}</p>
               </div>
             </div>
           </li>
