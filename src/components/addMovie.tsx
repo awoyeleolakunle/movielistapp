@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import axios from 'axios';
-import '../styles/addMovie.css';
+import '../components/addMovie.css';
 
-export const AddAMovie = () => {
-  const [listOfMovies, setListOfMovies] = useState([]);
-  const [newId, setNewId] = useState(null);
-  const [newMovie, setNewMovie] = useState({
-    id: 9,
+
+import { RootState } from '../store/store'; 
+
+
+export interface Movie {
+  _id: string,
+  movieImage :string,
+  genre: string,
+  director: string,
+  title: string,
+
+}
+export const AddAMovie : React.FC = () => {
+
+
+  const [newId, setNewId] = useState< Number | null >(null);
+
+
+  const [newMovie, setNewMovie] = useState<Movie>({
+    _id: '',
     movieImage :'',
     genre: '',
     director:'',
     title: '',
   });
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const response = await axios.get('/movies.json');
-        console.log("I'm the found data ", response.data);
-        setListOfMovies(response.data);
-        setNewId(response.data.length + 1);
-      } catch (error) {
-        console.error('Error fetching movies:', error);
-      }
-    };
+ 
 
-    fetchMovies();
-    // setNewId(listOfMovies.length + 1);
-  }, []);
-
-
-
+ 
   console.log(newId);
 
 
-  const handleChange = (event) => {
+  const handleChange = (event : ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setNewMovie((prevData) => ({
       ...prevData,
@@ -44,19 +44,23 @@ export const AddAMovie = () => {
 
   
   const handleSubmit = async () => {
-    console.log(newMovie);
 
-    const updatedMovies = [...listOfMovies, newMovie];
 
-   
-    setListOfMovies(updatedMovies);
+    const AddAMovie = async ()=>{
 
-    try {
-      await axios.put('/movies.json', updatedMovies);
-      console.log('Movie added successfully!');
-    } catch (error) {
-      console.error('Error updating movies:', error);
+
+      try{
+      const resposne = await axios.post('http://localhost:5000/api/v1/movielistapp/movieCreation', newMovie)
+
+      const data = resposne.data;
+      console.log(data);
+      }
+      catch(error){
+        console.log('Error connectint to server');
+      }
+
     }
+
   };
 
   return (

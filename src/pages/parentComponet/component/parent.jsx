@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { MovieList } from '../../page1/components/movies';
+import { MovieList } from '../../../components/movies';
 import { SelectedMovie } from '../../page2/component/selectedMoviePage';
 
 const ParentComponent = () => {
