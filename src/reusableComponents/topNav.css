@@ -1,0 +1,57 @@
+.topNav {
+  display: flex;
+  background-color: rgb(000, 000, 000);
+  color: rgb(229, 9, 20);
+  justify-content: space-between;
+  height: 8%;
+  padding: 1%;
+  padding-top: 40px;
+  position: sticky;
+  top: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.leftNavDetails {
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(1.5rem, 2rem + 4vw, 2.5rem);
+  font-weight: 600;
+  transform-style: preserve-3d;
+  margin-top: -3%;
+}
+
+.rightNavDetails {
+  display: flex;
+  gap: 2%;
+  justify-items: right;
+  justify-content: right;
+  width: 50%;
+  margin-top: -2%;
+}
+
+.unlimited {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 1%;
+  color: rgb(255, 255, 255);
+}
+
+.rightNavDetails button {
+  color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+
+  font-size: 16px;
+  max-height: 40px;
+  border-radius: 3px;
+}
+.signInBtn {
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(000, 000, 000);
+  width: 19%;
+}
+.joinNowBtn {
+  background-color: rgb(227, 8, 19);
+  border: 2px solid rgb(227, 8, 19);
+  width: 21%;
+}

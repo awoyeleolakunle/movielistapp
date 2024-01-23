@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { addMovie } from "../store/actions";
+import TopNav from "../reusableComponents/topNav";
+import Footer from "../reusableComponents/footer/footer";
 
 export const SelectedMovie: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,9 +34,11 @@ export const SelectedMovie: React.FC = () => {
 
   return (
     <div className="mainContainer2">
-      <div className="bainedCinemaInSelectedMovie">
+      {/* <div className="bainedCinemaInSelectedMovie">
         Bained makes it done easily with zero stress
-      </div>
+      </div> */}
+
+      <TopNav />
 
       <div className="listToBeDisplayedInSelectedPage">
         {foundMovie && (
@@ -54,6 +58,13 @@ export const SelectedMovie: React.FC = () => {
       <button className="prevBtn" onClick={() => navigate("/")}>
         Go to the previous page
       </button>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <Footer />
     </div>
   );
 };

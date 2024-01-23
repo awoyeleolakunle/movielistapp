@@ -1,7 +1,9 @@
 import React, { useState, ChangeEvent } from "react";
 import axios from "axios";
 import "../components/addMovie.css";
-// import { toast, ToastContainer } from "react-toastify";
+import TopNav from "../reusableComponents/topNav";
+import Footer from "../reusableComponents/footer/footer";
+import { toast, ToastContainer } from "react-toastify";
 
 export interface Movie {
   _id: string;
@@ -23,6 +25,7 @@ export const AddAMovie: React.FC = () => {
   });
 
   const uploadImage = async (imageFile: File) => {
+    console.log("I came her to make the call ");
     try {
       const formData = new FormData();
       formData.append("file", imageFile);
@@ -33,9 +36,9 @@ export const AddAMovie: React.FC = () => {
         "https://api.cloudinary.com/v1_1/deokatly1/upload",
         formData,
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          // headers: {
+          //   "Content-Type": "multipart/form-data",
+          // },
         }
       );
 
@@ -52,7 +55,9 @@ export const AddAMovie: React.FC = () => {
   };
 
   const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    console.log("I'm in here now ");
     if (event.target.name === "movieImage" && event.target.files) {
+      console.log("I enterd here  ", event.target.files);
       const imageFile = event.target.files[0];
       console.log("I'm the image file ", imageFile);
 
@@ -90,9 +95,9 @@ export const AddAMovie: React.FC = () => {
 
       console.log(response);
       console.log(response.data);
-      // if (response.status === 201) {
-      //   toast.success("Movie added successfully");
-      // }
+      if (response.status === 201) {
+        toast.success("Movie added successfully");
+      }
     } catch (error) {
       console.log("Error connecting to the server", error);
     }
@@ -100,6 +105,7 @@ export const AddAMovie: React.FC = () => {
 
   return (
     <div className="mainContainerForAddMovie">
+      <TopNav />
       <div className="addMovieDiv">
         <div className="form-group">
           <label htmlFor="movieImage">Movie Image:</label>
@@ -150,7 +156,14 @@ export const AddAMovie: React.FC = () => {
       <button className="addMovieBtn" onClick={handleSubmit}>
         Add Movie
       </button>
-      {/* <ToastContainer /> */}
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <Footer />
+      <ToastContainer />
     </div>
   );
 };

@@ -60,13 +60,7 @@
 }
 
 .listToBeDisplayed {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-items: center;
-  justify-content: space-evenly;
-  margin-top: 80px;
+ 
 }
 
 .listToBeDisplayed > li {
@@ -116,64 +110,16 @@
   top: 1;
 } */
 
+body {
+  margin: 0%;
+  padding: 0%;
+  background-color: rgb(24, 24, 24);
+}
+
 .homePageContainer {
   width: 100%;
   height: 100vh;
   background-color: rgb(24, 24, 24);
-}
-
-.topNav {
-  display: flex;
-  background-color: rgb(000, 000, 000);
-  color: rgb(229, 9, 20);
-  justify-content: space-between;
-  height: 10%;
-  padding: 1%;
-  padding-top: 40px;
-  position: sticky;
-  /* padding-top: 40px; */
-}
-
-.leftNavDetails {
-  min-height: 100vh;
-  font-family: "Oswald", sans-serif;
-  font-size: clamp(1.5rem, 2rem + 4vw, 2.5rem);
-  transform-style: preserve-3d;
-  margin-top: -1%;
-  /* transform: translate(5px, 20px) rotate(15deg); */
-}
-
-.rightNavDetails {
-  display: flex;
-  gap: 2%;
-  justify-items: right;
-  justify-content: right;
-  width: 50%;
-  margin-top: -1%;
-}
-
-.unlimited {
-  font-size: 25px;
-  margin-top: 0.5%;
-  color: rgb(255, 255, 255);
-}
-
-.rightNavDetails button {
-  color: white;
-
-  font-size: 25px;
-  max-height: 40px;
-  border-radius: 5px;
-}
-.signInBtn {
-  border: 2px solid rgb(255, 255, 255);
-  background-color: rgb(000, 000, 000);
-  width: 17%;
-}
-.joinNowBtn {
-  background-color: rgb(227, 8, 19);
-  border: 2px solid rgb(227, 8, 19);
-  width: 16%;
 }
 
 .afterNavDiv {
@@ -184,11 +130,18 @@
 }
 
 .afterNavDiv h1 {
-  font-size: 60px;
+  font-size: 40px;
+  font-weight: 800;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.01cm;
 }
 .afterNavDiv p {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-  font-size: 26px;
+  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); */
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.01cm;
+  line-height: 1.5;
 }
 
 .afterMovieDisplayDiv {
@@ -197,16 +150,57 @@
 }
 
 .afterMovieDisplayDiv {
-  font-size: 20px;
+  font-size: 16px;
+  line-height: 1.5;
 }
 .afterMovieDisplayDiv p {
-  font-size: 26px;
+  font-size: 16px;
 }
 
 .joinNowBtn2 {
   background-color: rgb(227, 8, 19);
-  width: 10%;
-  height: 5%;
-  border: 2px solid;
-  color: rgb(0, 0, 0);
+  border: 2px solid rgb(227, 8, 19);
+  width: 15%;
+  color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  height: 50px;
+  border-radius: 3px;
+}
+
+/* .listToBeDisplayed li {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 2px #ff00ff, 0 0 5px #ff00ff, 0 0 8px #ff00ff;
+  cursor: pointer;
+} */
+
+.listToBeDisplayed {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin: 2%;
+}
+
+.otherMovieDetails p {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.01cm;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.bainedLink {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left;
+  margin-left: -48%;
+  color: rgb(89, 115, 103);
 }
