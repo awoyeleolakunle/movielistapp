@@ -1,10 +1,15 @@
-import React from "react";
-import "../reusableComponents/topNav.css";
+import React, { useState } from "react";
+import "../topNav/topNav.css";
 
 import { useNavigate } from "react-router-dom";
 
 const TopNav = () => {
   const navigate = useNavigate();
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!isMenuOpen);
+  };
   return (
     <div className="topNav">
       <div className="leftNavDetails">Bained Movies</div>

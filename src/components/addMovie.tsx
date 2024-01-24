@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
 import axios from "axios";
 import "../components/addMovie.css";
-import TopNav from "../reusableComponents/topNav";
+import TopNav from "../reusableComponents/topNav/topNav";
 import Footer from "../reusableComponents/footer/footer";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -153,9 +153,7 @@ export const AddAMovie: React.FC = () => {
           />
         </div>
       </div>
-      <button className="addMovieBtn" onClick={handleSubmit}>
-        Add Movie
-      </button>
+
       <br />
       <br />
       <br />

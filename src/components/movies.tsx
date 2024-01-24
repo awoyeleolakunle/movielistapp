@@ -5,7 +5,7 @@ import "../components/movie.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Movie } from "../components/addMovie";
 import { addListOfMovies } from "../store/actions";
-import TopNav from "../reusableComponents/topNav";
+import TopNav from "../reusableComponents/topNav/topNav";
 import Footer from "../reusableComponents/footer/footer";
 
 import { RootState } from "../store/store";
@@ -95,6 +95,8 @@ export const MovieList = () => {
           ))}
         </ul>
       </div>
+      <br />
+      <br />
 
       <div className="afterMovieDisplayDiv">
         <h1>There is even more to watch</h1>
@@ -116,7 +118,6 @@ export const MovieList = () => {
         Read about Bained TV shows and movies and watch bonus videos on
         bained.com.
       </a>
-      <br />
       <br />
       <br />
       <br />
