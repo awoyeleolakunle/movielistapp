@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
 import "../components/addMovie.css";
 import TopNav from "../reusableComponents/topNav/topNav";
@@ -14,6 +14,7 @@ export interface Movie {
 }
 
 export const AddAMovie: React.FC = () => {
+  console.log("Yes let go");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   const [newMovie, setNewMovie] = useState<Movie>({
@@ -24,64 +25,67 @@ export const AddAMovie: React.FC = () => {
     title: "",
   });
 
-  const uploadImage = async (imageFile: File) => {
-    console.log("I came her to make the call ");
+  const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
+    console.log("I came here to make the call ");
     try {
-      const formData = new FormData();
-      formData.append("file", imageFile);
-      formData.append("upload_preset", "movielistapp");
+      const imageFile = event.target.files?.[0];
+      console.log("I'm the image file ", imageFile);
 
-      console.log("I'm in here ");
-      const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/deokatly1/upload",
-        formData,
-        {
-          // headers: {
-          //   "Content-Type": "multipart/form-data",
-          // },
-        }
-      );
+      if (imageFile) {
+        const formData = new FormData();
+        formData.append("file", imageFile);
+        formData.append("upload_preset", "movielistapp");
 
-      console.log("I got here too");
+        console.log("I'm in here ");
 
-      console.log("I'm the response ", response);
+        const response = await axios.post(
+          "https://api.cloudinary.com/v1_1/deokatly1/upload",
+          formData
+        );
 
-      console.log("I am the response data url", response.data.url);
-      const url = response.data.url;
-      setImageUrl(url);
+        console.log("I got here too");
+
+        console.log("I'm the response ", response);
+
+        console.log("I am the response data url", response.data.url);
+        const url = response.data.url;
+        setImageUrl(url);
+      }
     } catch (error) {
       console.error("Error uploading image to Cloudinary:", error);
     }
   };
 
-  const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    console.log("I'm in here now ");
-    if (event.target.name === "movieImage" && event.target.files) {
-      console.log("I enterd here  ", event.target.files);
-      const imageFile = event.target.files[0];
-      console.log("I'm the image file ", imageFile);
-
-      await uploadImage(imageFile);
-
+  useEffect(() => {
+    if (imageUrl) {
       setNewMovie((prevData) => ({
         ...prevData,
         imageUrl: imageUrl || "",
       }));
     }
+  }, [imageUrl]);
 
-    const { name, value } = event.target;
-    setNewMovie((prevData) => ({
-      ...prevData,
-      imageUrl: imageUrl || "",
-      [name]: value,
-    }));
-  };
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log("I'm in here now ");
 
-  const handleSubmit = async () => {
-    try {
-      await addMovie();
-    } catch (error) {
-      console.log("Error connecting to the server", error);
+    if (event.target.name === "genre") {
+      setNewMovie((prevData) => ({
+        ...prevData,
+        genre: event.target.value,
+      }));
+    }
+
+    if (event.target.name === "director") {
+      setNewMovie((prevData) => ({
+        ...prevData,
+        director: event.target.value,
+      }));
+    }
+    if (event.target.name === "title") {
+      setNewMovie((prevData) => ({
+        ...prevData,
+        title: event.target.value,
+      }));
     }
   };
 
@@ -113,7 +117,7 @@ export const AddAMovie: React.FC = () => {
             type="file"
             id="imageId"
             name="movieImage"
-            onChange={handleChange}
+            onChange={uploadImage}
           />
         </div>
 
@@ -153,6 +157,9 @@ export const AddAMovie: React.FC = () => {
           />
         </div>
       </div>
+      <button className="addMovieBtn" onClick={addMovie}>
+        Add Movie{" "}
+      </button>
 
       <br />
       <br />

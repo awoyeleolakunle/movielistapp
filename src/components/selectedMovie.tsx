@@ -50,14 +50,7 @@ export const SelectedMovie: React.FC = () => {
             className="selectedMovieImage"
             src={foundMovie.imageUrl}
             alt=""
-            style={{
-              width: "65%",
-              maxWidth: "65%",
-              height: "500px",
-              objectFit: "cover",
-              marginTop: "-7.5%",
-              flexWrap: "wrap",
-            }}
+            style={{}}
           />
           <div
             className="otherMovieDetailsN"

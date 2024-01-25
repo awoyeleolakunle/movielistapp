@@ -24,11 +24,13 @@ export const MovieList = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
+      console.log();
       try {
         const response = await axios.get(
           "http://localhost:5000/api/v1/movielistapp/allMovie"
         );
         const data = response.data;
+        console.log(response);
         console.log(data);
         console.log("I'm the fetched data ", data);
         dispatch(addListOfMovies(data));
