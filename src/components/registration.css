@@ -1,0 +1,61 @@
+.mainContainerRegistration {
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(24, 24, 24);
+}
+
+.mainContainerRegistration .words p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  font-size: 25px;
+  margin: auto;
+}
+
+.words {
+  margin-top: 8%;
+  line-height: 1.5;
+  word-spacing: 0.01cm;
+}
+
+.form-Div {
+  width: 40%;
+  margin: auto;
+  margin-top: 2%;
+  color: rgb(255, 255, 255);
+
+  /* box-shadow: 0px 4px 8px -2px red, 0px 2px 6px -1px black; */
+}
+
+.registrationForm {
+  line-height: 2;
+  word-spacing: 0cm;
+  align-items: center;
+}
+
+.registrationForm label {
+  display: inline-block;
+  margin-right: 10px;
+  width: 100%;
+}
+
+.registrationForm input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: 50%;
+  height: 50px;
+}
+
+.sign-up-button {
+  background-color: rgb(227, 8, 19);
+  border: 2px solid rgb(227, 8, 19);
+  width: 30%;
+  color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+
+  font-size: 16px;
+  border-radius: 3px;
+  line-height: 2;
+}

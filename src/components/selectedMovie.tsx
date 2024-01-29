@@ -64,6 +64,8 @@ export const SelectedMovie: React.FC = () => {
             <p>Genre : {foundMovie.genre}</p>
             <p>Title : {foundMovie.title}</p>
             <p>Director : {foundMovie.director}</p>
+            <p>description : {foundMovie.description}</p>
+            <p>Pg Ratings : {foundMovie.pgRatings} </p>
           </div>
         </div>
       )}

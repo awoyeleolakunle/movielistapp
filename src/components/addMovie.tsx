@@ -11,11 +11,16 @@ export interface Movie {
   genre: string;
   director: string;
   title: string;
+  description: string;
+  pgRatings: string;
+  cast: string[];
 }
 
 export const AddAMovie: React.FC = () => {
   console.log("Yes let go");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [cast, setCast] = useState<string[]>([]);
+  const [castDetails, setCastDetails] = useState<string | null>(null);
 
   const [newMovie, setNewMovie] = useState<Movie>({
     _id: "",
@@ -23,6 +28,9 @@ export const AddAMovie: React.FC = () => {
     genre: "",
     director: "",
     title: "",
+    description: "",
+    pgRatings: "",
+    cast: cast,
   });
 
   const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -86,6 +94,34 @@ export const AddAMovie: React.FC = () => {
         ...prevData,
         title: event.target.value,
       }));
+    }
+
+    if (event.target.name === "description") {
+      setNewMovie((prevData) => ({
+        ...prevData,
+        description: event.target.value,
+      }));
+    }
+
+    if (event.target.name === "pgRatings") {
+      setNewMovie((prevData) => ({
+        ...prevData,
+        pgRatings: event.target.value,
+      }));
+    }
+  };
+
+  const handCastDetails = (event: ChangeEvent<HTMLInputElement>) => {
+    setCastDetails(event.target.value);
+  };
+
+  const addToListOfCast = () => {
+    if (castDetails) {
+      const listOfCasts = [...cast, castDetails];
+
+      setCast(listOfCasts);
+
+      console.log(cast);
     }
   };
 
@@ -155,6 +191,41 @@ export const AddAMovie: React.FC = () => {
             placeholder="enter movie title"
             onChange={handleChange}
           />
+        </div>
+        <div className="form-group">
+          <label htmlFor="description">Description:</label>
+          <input
+            type="text"
+            id="descriptionId"
+            name="description"
+            value={newMovie.description}
+            placeholder="enter movie description"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="pgRatings">Pg Ratings:</label>
+          <input
+            type="text"
+            id="pgRatingsId"
+            name="pgRatings"
+            value={newMovie.pgRatings}
+            placeholder="enter movie pgRatings"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="cast">Add a cast to list of casts:</label>
+          <input
+            type="text"
+            id="castId"
+            name="cast"
+            placeholder="enter a cast "
+            onChange={handCastDetails}
+          />
+          <button className="addcastBtn" onClick={addToListOfCast}>
+            Add Cast
+          </button>
         </div>
       </div>
       <button className="addMovieBtn" onClick={addMovie}>

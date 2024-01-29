@@ -1,10 +1,11 @@
-
-import './styles/App.css'
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { MovieList } from './components/movies';
-import  {SelectedMovie}  from './components/selectedMovie';
-import { AddAMovie } from './components/addMovie';
+import "./styles/App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { MovieList } from "./components/movies";
+import { SelectedMovie } from "./components/selectedMovie";
+import { AddAMovie } from "./components/addMovie";
+import { RegisterUser } from "./components/registration";
+import { Login } from "./components/signIn";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
           <Route path="/" element={<MovieList />} />
           <Route path="/selectedMoviePage" element={<SelectedMovie />} />
           <Route path="/addMovie" element={<AddAMovie />} />
+          <Route path="/registerUser" element={<RegisterUser />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </div>
@@ -21,4 +24,3 @@ function App() {
 }
 
 export default App;
-

@@ -18,7 +18,9 @@ const TopNav = () => {
         <button onClick={() => navigate("/addMovie")} className="joinNowBtn">
           Add Movie
         </button>
-        <button className="signInBtn">Sign In</button>
+        <button className="signInBtn" onClick={() => navigate("/registerUser")}>
+          Sign In
+        </button>
       </div>
     </div>
   );

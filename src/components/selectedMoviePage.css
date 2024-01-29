@@ -38,8 +38,7 @@
   flex-wrap: wrap;
 }
 .otherMovieDetailsN {
-  margin-top: 17%;
-  margin-left: -10%;
+  margin-top: 10%;
 }
 
 .otherMovieDetailsN p {
@@ -49,7 +48,7 @@
   letter-spacing: 0.02cm;
   line-height: 2;
   color: rgb(255, 255, 255);
-  text-align: center;
+  text-align: left;
 }
 
 .listToBeDisplayedInSelectedPage button {
