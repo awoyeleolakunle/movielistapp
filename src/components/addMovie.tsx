@@ -120,12 +120,14 @@ export const AddAMovie: React.FC = () => {
       const listOfCasts = [...cast, castDetails];
 
       setCast(listOfCasts);
-
       console.log(cast);
+      setCastDetails("");
     }
   };
 
   const addMovie = async () => {
+    console.log(newMovie);
+    newMovie.cast = cast;
     console.log(newMovie);
     try {
       const response = await axios.post(

@@ -4,7 +4,9 @@ import "../components/registration.css";
 import TopNav from "./../reusableComponents/topNav/topNav";
 import Footer from "../reusableComponents/footer/footer";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 export interface User {
   _id: string;
   emailAddress: string;
@@ -20,12 +22,20 @@ export const RegisterUser: React.FC = () => {
     phoneNumber: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setNewUser((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const decodeToken = (token: string) => {
+    const decodedToken = jwtDecode(token);
+    console.log("I'm the decoded token :", decodedToken);
+    navigate("/");
   };
 
   const addNewUser = async () => {
@@ -36,10 +46,15 @@ export const RegisterUser: React.FC = () => {
         newUser
       );
 
-      console.log(response);
-      console.log(response.data);
+      console.log(" I'm the response ", response);
+      console.log("I'm the response date ", response.data);
+      console.log("I'm the response status", response.status);
       if (response.status === 201) {
+        decodeToken(response.data);
         toast.success("Movie added successfully");
+      } else if (response.status === 400) {
+        console.log(response.data);
+        toast.success(response.data);
       }
     } catch (error) {
       console.log("Error connecting to the server", error);

@@ -2,7 +2,10 @@ import React, { ChangeEvent, useState } from "react";
 import "./signIn.css";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import TopNav from "./../reusableComponents/topNav/topNav";
+import Footer from "../reusableComponents/footer/footer";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export interface Login {
   emailAddress: string;
@@ -15,6 +18,8 @@ export const Login: React.FC = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setLoginDetails((prevState) => ({
@@ -24,9 +29,9 @@ export const Login: React.FC = () => {
   };
 
   const decodeToken = (token: string) => {
-    const slicedToken = token.slice(0, 6);
-    const decodedToken = jwtDecode(slicedToken);
-    console.log("I'm the decoded token :", decodeToken);
+    const decodedToken = jwtDecode(token);
+    console.log("I'm the decoded token :", decodedToken);
+    navigate("/");
   };
 
   const loginUser = async () => {
@@ -45,8 +50,9 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="mainContainer-login">
+      <TopNav />
+      <div className="form-login">
         <div className="login-Form">
           <label htmlFor="emailAddress">Email Address</label>
           <input
@@ -58,7 +64,7 @@ export const Login: React.FC = () => {
         </div>
 
         <div className="login-Form">
-          <label htmlFor="password">Email Address</label>
+          <label htmlFor="password">Password</label>
           <input
             type="text"
             name="password"
@@ -66,7 +72,18 @@ export const Login: React.FC = () => {
             onChange={handleChange}
           />
         </div>
+        <br />
+        <button className="sign-In-Button" onClick={loginUser}>
+          Sign In
+        </button>
       </div>
+      <p>
+        Not yet a member ? <a href="/registerUser">Sign Up</a>
+      </p>
+      <br />
+      <br />
+      <br />
+      <Footer />
       <ToastContainer />
     </div>
   );

@@ -64,7 +64,7 @@ export const SelectedMovie: React.FC = () => {
             <p>Genre : {foundMovie.genre}</p>
             <p>Title : {foundMovie.title}</p>
             <p>Director : {foundMovie.director}</p>
-            <p>description : {foundMovie.description}</p>
+            <p>Description : {foundMovie.description}</p>
             <p>Pg Ratings : {foundMovie.pgRatings} </p>
           </div>
         </div>
@@ -75,7 +75,7 @@ export const SelectedMovie: React.FC = () => {
       <br />
 
       <button className="prevBtn" onClick={() => navigate("/")}>
-        Go to the previous page
+        Go back to previous page
       </button>
       <br />
       <br />

@@ -21,7 +21,7 @@
   place-items: center;
   overflow: hidden;
   max-height: 600px;
-  z-index: 1;
+
   width: 100%;
   display: flex;
   z-index: 2;
@@ -30,15 +30,17 @@
 }
 
 .selectedMovieImage {
-  width: 65%;
-  max-width: 65%;
+  width: 62%;
+  max-width: 62%;
   height: 500px;
   object-fit: cover;
   margin-top: -7.5%;
   flex-wrap: wrap;
 }
+
 .otherMovieDetailsN {
   margin-top: 10%;
+  width: 35%;
 }
 
 .otherMovieDetailsN p {
@@ -49,6 +51,7 @@
   line-height: 2;
   color: rgb(255, 255, 255);
   text-align: left;
+  width: 80%;
 }
 
 .listToBeDisplayedInSelectedPage button {
@@ -116,8 +119,6 @@
   }
 
   .otherMovieDetailsN {
-    /* margin-top: 17%;
-    margin-left: -10%; */
   }
 
   .otherMovieDetailsN p {
@@ -127,8 +128,7 @@
     letter-spacing: 0.02cm;
     line-height: 2;
     color: rgb(255, 255, 255);
-    text-align: center;
-    margin-left: -15%;
+    text-align: left;
   }
 
   .listToBeDisplayedInSelectedPage button {
