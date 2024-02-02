@@ -35,8 +35,9 @@
 
 .registrationForm label {
   display: inline-block;
-  margin-right: 10px;
+  margin-left: 25%;
   width: 100%;
+  text-align: left;
 }
 
 .registrationForm input {

@@ -26,6 +26,7 @@
 
 .form-group {
   margin-bottom: 10px;
+  padding: 10px;
 }
 
 .form-group label {
@@ -34,13 +35,15 @@
   text-decoration: solid;
   font-size: 18px;
   color: rgb(255, 255, 255);
+  margin-left: 17%;
 }
 
 .form-group input {
-  width: 100%;
+  width: 65%;
   height: 50px;
   border-radius: 5px;
   box-sizing: border-box;
+  margin-left: 17%;
 }
 
 .addMovieBtn {
@@ -52,8 +55,19 @@
   font-weight: 500;
 
   font-size: 16px;
-  max-height: 40px;
+  height: 40px;
   border-radius: 3px;
+}
+
+.addcastBtn {
+  margin-left: 17%;
+  background-color: rgb(227, 8, 19);
+  border: 2px solid rgb(227, 8, 19);
+  color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  border-radius: 3px;
+  width: 20%;
 }
 
 @media screen and (max-width: 480px) {

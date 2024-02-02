@@ -225,11 +225,13 @@ export const AddAMovie: React.FC = () => {
             placeholder="enter a cast "
             onChange={handCastDetails}
           />
+          <br />
           <button className="addcastBtn" onClick={addToListOfCast}>
             Add Cast
           </button>
         </div>
       </div>
+      <br />
       <button className="addMovieBtn" onClick={addMovie}>
         Add Movie{" "}
       </button>

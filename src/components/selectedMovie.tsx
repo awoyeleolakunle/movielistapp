@@ -66,6 +66,7 @@ export const SelectedMovie: React.FC = () => {
             <p>Director : {foundMovie.director}</p>
             <p>Description : {foundMovie.description}</p>
             <p>Pg Ratings : {foundMovie.pgRatings} </p>
+            {foundMovie.cast && <p>Casts : {foundMovie.cast.join(", ")}</p>}
           </div>
         </div>
       )}
