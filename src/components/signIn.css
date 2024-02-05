@@ -14,14 +14,15 @@
   word-spacing: 0cm;
   align-items: center;
   margin: auto;
-  line-height: 3;
+  line-height: 1;
 }
 
 .login-Form label {
   display: inline-block;
-  margin-right: 10px;
+  margin-left: 25%;
   width: 100%;
   color: rgb(255, 255, 255);
+  text-align: left;
 }
 
 .login-Form input {
@@ -30,6 +31,9 @@
   box-sizing: border-box;
   width: 50%;
   height: 50px;
+}
+.form-login div {
+  line-height: 2;
 }
 .mainContainer-login p {
   color: rgb(255, 255, 255);

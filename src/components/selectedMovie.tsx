@@ -26,8 +26,8 @@ export const SelectedMovie: React.FC = () => {
       const response = await axios.get(
         `http://localhost:5000/api/v1/movielistapp/findMovieByTitle?title=${cleanFoundParam}`
       );
-      console.log("I'm the found data ", response.data);
-      dispatch(addMovie(response.data));
+      console.log("I'm the found data ", response.data.data);
+      dispatch(addMovie(response.data.data));
     };
 
     fetchMovies();

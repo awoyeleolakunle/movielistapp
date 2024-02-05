@@ -5,15 +5,16 @@ import { jwtDecode } from "jwt-decode";
 import TopNav from "./../reusableComponents/topNav/topNav";
 import Footer from "../reusableComponents/footer/footer";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
-export interface Login {
+export interface LoginDetails {
   emailAddress: string;
   password: string;
 }
 
 export const Login: React.FC = () => {
-  const [loginDetails, setLoginDetails] = useState<Login>({
+  const [loginDetails, setLoginDetails] = useState<LoginDetails>({
     emailAddress: "",
     password: "",
   });
@@ -29,8 +30,14 @@ export const Login: React.FC = () => {
   };
 
   const decodeToken = (token: string) => {
-    const decodedToken = jwtDecode(token);
+    const decodedToken: any = jwtDecode(token);
     console.log("I'm the decoded token :", decodedToken);
+
+    if (decodedToken.accessTypes[0] === "ADMIN") {
+      sessionStorage.setItem("movieListToken", token);
+    } else {
+      sessionStorage.setItem("movieListToken", token);
+    }
     navigate("/");
   };
 
@@ -42,11 +49,15 @@ export const Login: React.FC = () => {
       );
       console.log(response);
       console.log(response.data);
-      if (response.status === 200) {
-        decodeToken(response.data);
+      if (response.data.status === 200) {
+        decodeToken(response.data.data);
         toast.success("Movie added successfully");
       }
-    } catch (error) {}
+    } catch (error: any) {
+      if (error.response.data.status === 400) {
+        toast.error(error.response.data.data);
+      }
+    }
   };
 
   return (
@@ -84,7 +95,7 @@ export const Login: React.FC = () => {
       <br />
       <br />
       <Footer />
-      <ToastContainer />
+      <ToastContainer position="top-center" />
     </div>
   );
 };

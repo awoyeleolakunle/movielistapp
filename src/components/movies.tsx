@@ -10,9 +10,6 @@ import Footer from "../reusableComponents/footer/footer";
 
 import { RootState } from "../store/store";
 
-import { logo_URL } from "../../src/config/appConfig";
-import { isVisible } from "@testing-library/user-event/dist/utils";
-
 export const MovieList = () => {
   const dispatch = useDispatch();
 
@@ -29,7 +26,7 @@ export const MovieList = () => {
         const response = await axios.get(
           "http://localhost:5000/api/v1/movielistapp/allMovie"
         );
-        const data = response.data;
+        const data = response.data.data;
         console.log(response);
         console.log(data);
         console.log("I'm the fetched data ", data);

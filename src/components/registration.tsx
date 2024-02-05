@@ -6,9 +6,10 @@ import Footer from "../reusableComponents/footer/footer";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 export interface User {
-  _id: string;
+  _id?: string;
   emailAddress: string;
   password: string;
   phoneNumber: string;
@@ -16,7 +17,6 @@ export interface User {
 
 export const RegisterUser: React.FC = () => {
   const [newUser, setNewUser] = useState<User>({
-    _id: "",
     emailAddress: "",
     password: "",
     phoneNumber: "",
@@ -47,17 +47,20 @@ export const RegisterUser: React.FC = () => {
       );
 
       console.log(" I'm the response ", response);
-      console.log("I'm the response date ", response.data);
-      console.log("I'm the response status", response.status);
-      if (response.status === 201) {
-        decodeToken(response.data);
+      console.log("I'm the response date ", response.data.data);
+      console.log("I'm the response status", response.data.status);
+      if (response.data.status === 201) {
+        decodeToken(response.data.data);
         toast.success("Movie added successfully");
-      } else if (response.status === 400) {
-        console.log(response.data);
-        toast.success(response.data);
+      } else if (response.data.status === 400) {
+        console.log(response.data.data);
+        toast.success(response.data.data);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log("Error connecting to the server", error);
+      if (error.response.data.status === 400) {
+        toast.error(error.response.data.data);
+      }
     }
   };
 
@@ -109,7 +112,7 @@ export const RegisterUser: React.FC = () => {
       <br />
 
       <Footer />
-      <ToastContainer />
+      <ToastContainer position="top-center" />
     </div>
   );
 };

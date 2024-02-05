@@ -4,9 +4,10 @@ import "../components/addMovie.css";
 import TopNav from "../reusableComponents/topNav/topNav";
 import Footer from "../reusableComponents/footer/footer";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export interface Movie {
-  _id: string;
+  _id?: string;
   imageUrl: string;
   genre: string;
   director: string;
@@ -21,9 +22,9 @@ export const AddAMovie: React.FC = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [cast, setCast] = useState<string[]>([]);
   const [castDetails, setCastDetails] = useState<string | null>(null);
+  const [adminToken, setAdminToken] = useState<string | null>(null);
 
   const [newMovie, setNewMovie] = useState<Movie>({
-    _id: "",
     imageUrl: "",
     genre: "",
     director: "",
@@ -74,41 +75,12 @@ export const AddAMovie: React.FC = () => {
   }, [imageUrl]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log("I'm in here now ");
+    const name = event.target.name;
 
-    if (event.target.name === "genre") {
-      setNewMovie((prevData) => ({
-        ...prevData,
-        genre: event.target.value,
-      }));
-    }
-
-    if (event.target.name === "director") {
-      setNewMovie((prevData) => ({
-        ...prevData,
-        director: event.target.value,
-      }));
-    }
-    if (event.target.name === "title") {
-      setNewMovie((prevData) => ({
-        ...prevData,
-        title: event.target.value,
-      }));
-    }
-
-    if (event.target.name === "description") {
-      setNewMovie((prevData) => ({
-        ...prevData,
-        description: event.target.value,
-      }));
-    }
-
-    if (event.target.name === "pgRatings") {
-      setNewMovie((prevData) => ({
-        ...prevData,
-        pgRatings: event.target.value,
-      }));
-    }
+    setNewMovie((prevData) => ({
+      ...prevData,
+      [name]: event.target.value,
+    }));
   };
 
   const handCastDetails = (event: ChangeEvent<HTMLInputElement>) => {
@@ -125,6 +97,18 @@ export const AddAMovie: React.FC = () => {
     }
   };
 
+  const retrieveToken = () => {
+    const retrievedToken: string | null =
+      sessionStorage.getItem("movieListToken");
+    console.log("i'm the token in useEffect : ", retrievedToken);
+    return retrievedToken;
+  };
+
+  useEffect(() => {
+    const retrievedToken: string | null = retrieveToken();
+    setAdminToken(retrievedToken);
+  }, []);
+
   const addMovie = async () => {
     console.log(newMovie);
     newMovie.cast = cast;
@@ -132,16 +116,28 @@ export const AddAMovie: React.FC = () => {
     try {
       const response = await axios.post(
         "http://localhost:5000/api/v1/movielistapp/movieCreation",
-        newMovie
+        newMovie,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: adminToken,
+          },
+        }
       );
 
       console.log(response);
       console.log(response.data);
-      if (response.status === 201) {
+      if (response.data.status === 201) {
         toast.success("Movie added successfully");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log("Error connecting to the server", error);
+      if (error && error.response.status && error.response.status === 401) {
+        console.log("I'm the error : ", error.response.data);
+        toast.error(error.response.data.error.data);
+      } else {
+        toast.error(error.response.data.data);
+      }
     }
   };
 
@@ -243,7 +239,7 @@ export const AddAMovie: React.FC = () => {
       <br />
       <br />
       <Footer />
-      <ToastContainer />
+      <ToastContainer position="top-center" />
     </div>
   );
 };
