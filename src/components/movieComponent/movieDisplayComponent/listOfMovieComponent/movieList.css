@@ -1,0 +1,8 @@
+.listToBeDisplayed {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-left: 2%;
+}

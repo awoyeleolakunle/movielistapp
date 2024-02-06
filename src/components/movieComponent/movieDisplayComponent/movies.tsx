@@ -64,7 +64,7 @@ export const MovieList = () => {
       <br />
 
       <div style={{ color: "rgb(255,255,255)" }}>
-        <ul className="listToBeDisplayed">
+        {/* <ul className="listToBeDisplayed">
           {listOfMovies.map((movie: Movie) => (
             <li
               key={movie._id}
@@ -89,7 +89,7 @@ export const MovieList = () => {
               </div>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </div>
       <br />
       <br />

@@ -6,13 +6,14 @@ import { SelectedMovie } from "./components/selectedMovie";
 import { AddAMovie } from "./components/movieComponent/addMovieComponents/addMovie";
 import { RegisterUser } from "./components/registration";
 import { Login } from "./components/signIn";
+import MoviePage from "./pages/moviePages/index";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<MovieList />} />
+          <Route path="/" element={<MoviePage />} />
           <Route path="/selectedMoviePage" element={<SelectedMovie />} />
           <Route path="/addMovie" element={<AddAMovie />} />
           <Route path="/registerUser" element={<RegisterUser />} />

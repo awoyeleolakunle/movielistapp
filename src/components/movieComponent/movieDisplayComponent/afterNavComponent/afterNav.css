@@ -1,0 +1,21 @@
+.afterNavDiv {
+  justify-content: left;
+  text-align: left;
+  margin-left: 10%;
+  color: rgb(255, 255, 255);
+}
+
+.afterNavDiv h1 {
+  font-size: 40px;
+  font-weight: 800;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.01cm;
+}
+.afterNavDiv p {
+  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); */
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.01cm;
+  line-height: 1.5;
+}
