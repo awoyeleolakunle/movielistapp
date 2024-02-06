@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import { Movie } from "../components/addMovie";
+import { Movie } from "../components/movieComponent/addMovieComponents/addMovie";
 
 interface MovieState {
   listOfMovies: Movie[];
-  selectedMovie: null;
+  selectedMovie: Movie | null;
 }
 
 const initialMovieState: MovieState = {
@@ -19,7 +19,19 @@ const movieReducer = (state = initialMovieState, action: any) => {
     case "ADD_A_MOVIE":
       return {
         ...state,
+        listOfMovies: [...state.listOfMovies, action.payload],
+      };
+    case "SELECT_A_MOVIE":
+      return {
+        ...state,
         selectedMovie: action.payload,
+      };
+    case "ROLLBACK_MOVIE":
+      return {
+        ...state,
+        listOfMovies: state.listOfMovies.filter(
+          (movie) => movie.title !== action.payload.title
+        ),
       };
 
     default:

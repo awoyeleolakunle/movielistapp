@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../components/movie.css";
+import "./movie.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Movie } from "../components/addMovie";
-import { addListOfMovies } from "../store/actions";
-import TopNav from "../reusableComponents/topNav/topNav";
-import Footer from "../reusableComponents/footer/footer";
-
-import { RootState } from "../store/store";
+import { Movie } from "../addMovieComponents/addMovie";
+import { addListOfMovies } from "../../../store/actions";
+import TopNav from "../../../reusableComponents/topNav/topNav";
+import Footer from "../../../reusableComponents/footer/footer";
+import { Base_Url } from "../../../config/appConfig";
+import { RootState } from "../../../store/store";
+import { ERROR_MESSAGE } from "../../../reusableComponents/errorHandling";
 
 export const MovieList = () => {
   const dispatch = useDispatch();
-
   const listOfMovies = useSelector(
     (state: RootState) => state.movie.listOfMovies ?? []
   );
@@ -24,15 +24,12 @@ export const MovieList = () => {
       console.log();
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/movielistapp/allMovie"
+          `${Base_Url}/api/v1/movielistapp/allMovie`
         );
         const data = response.data.data;
-        console.log(response);
-        console.log(data);
-        console.log("I'm the fetched data ", data);
         dispatch(addListOfMovies(data));
       } catch (error) {
-        console.log("Error fetching from the JSON file");
+        console.log(ERROR_MESSAGE.ERROR_FETCHING);
       }
     };
 
@@ -112,7 +109,6 @@ export const MovieList = () => {
       <br />
       <br />
       <br />
-
       <a className="bainedLink" href="#">
         Read about Bained TV shows and movies and watch bonus videos on
         bained.com.

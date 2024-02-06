@@ -8,6 +8,9 @@ import { jwtDecode } from "jwt-decode";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { Base_Url } from "../config/appConfig";
+import { SUCCESS_MESSAGE } from "../reusableComponents/successResponses";
+import { handleInputChange } from "../reusableComponents/handleChange";
 export interface User {
   _id?: string;
   emailAddress: string;
@@ -24,17 +27,12 @@ export const RegisterUser: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setNewUser((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    handleInputChange(event, setNewUser);
   };
 
   const decodeToken = (token: string) => {
     const decodedToken = jwtDecode(token);
-    console.log("I'm the decoded token :", decodedToken);
     navigate("/");
   };
 
@@ -42,22 +40,16 @@ export const RegisterUser: React.FC = () => {
     console.log(newUser);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/movielistapp/register",
+        `${Base_Url}/api/v1/movielistapp/register`,
         newUser
       );
-
-      console.log(" I'm the response ", response);
-      console.log("I'm the response date ", response.data.data);
-      console.log("I'm the response status", response.data.status);
       if (response.data.status === 201) {
         decodeToken(response.data.data);
-        toast.success("Movie added successfully");
+        toast.success(SUCCESS_MESSAGE);
       } else if (response.data.status === 400) {
-        console.log(response.data.data);
         toast.success(response.data.data);
       }
     } catch (error: any) {
-      console.log("Error connecting to the server", error);
       if (error.response.data.status === 400) {
         toast.error(error.response.data.data);
       }

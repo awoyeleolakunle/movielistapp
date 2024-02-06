@@ -1,10 +1,16 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
-import "../components/addMovie.css";
-import TopNav from "../reusableComponents/topNav/topNav";
-import Footer from "../reusableComponents/footer/footer";
+import "./addMovie.css";
+import TopNav from "../../../reusableComponents/topNav/topNav";
+import Footer from "../../../reusableComponents/footer/footer";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { handleInputChange } from "../../../reusableComponents/handleChange";
+import handleImageUpload from "../../../reusableComponents/handleImageUpload";
+import { fetchToken } from "../../../reusableComponents/handleRetrievedToken";
+import { Base_Url } from "../../../config/appConfig";
+import { useDispatch } from "react-redux";
+import { addAMovie, rollBackMovie } from "../../../store/actions";
 
 export interface Movie {
   _id?: string;
@@ -18,12 +24,11 @@ export interface Movie {
 }
 
 export const AddAMovie: React.FC = () => {
-  console.log("Yes let go");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [cast, setCast] = useState<string[]>([]);
   const [castDetails, setCastDetails] = useState<string | null>(null);
   const [adminToken, setAdminToken] = useState<string | null>(null);
-
+  const dispatch = useDispatch();
   const [newMovie, setNewMovie] = useState<Movie>({
     imageUrl: "",
     genre: "",
@@ -34,88 +39,49 @@ export const AddAMovie: React.FC = () => {
     cast: cast,
   });
 
-  const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
-    console.log("I came here to make the call ");
-    try {
-      const imageFile = event.target.files?.[0];
-      console.log("I'm the image file ", imageFile);
+  useEffect(() => {
+    fetchToken(setAdminToken);
+  }, []);
 
-      if (imageFile) {
-        const formData = new FormData();
-        formData.append("file", imageFile);
-        formData.append("upload_preset", "movielistapp");
-
-        console.log("I'm in here ");
-
-        const response = await axios.post(
-          "https://api.cloudinary.com/v1_1/deokatly1/upload",
-          formData
-        );
-
-        console.log("I got here too");
-
-        console.log("I'm the response ", response);
-
-        console.log("I am the response data url", response.data.url);
-        const url = response.data.url;
-        setImageUrl(url);
-      }
-    } catch (error) {
-      console.error("Error uploading image to Cloudinary:", error);
-    }
+  const uploadImageToCloudinary = async (
+    event: ChangeEvent<HTMLInputElement>
+  ): Promise<void> => {
+    const url: string | null = await handleImageUpload(event);
+    setImageUrl(url);
   };
 
   useEffect(() => {
     if (imageUrl) {
-      setNewMovie((prevData) => ({
+      setNewMovie((prevData: Movie) => ({
         ...prevData,
         imageUrl: imageUrl || "",
       }));
     }
   }, [imageUrl]);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const name = event.target.name;
-
-    setNewMovie((prevData) => ({
-      ...prevData,
-      [name]: event.target.value,
-    }));
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    handleInputChange(event, setNewMovie);
   };
 
-  const handCastDetails = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleCastDetails = (event: ChangeEvent<HTMLInputElement>): void => {
     setCastDetails(event.target.value);
   };
 
-  const addToListOfCast = () => {
+  const addToListOfCast = (): void => {
     if (castDetails) {
       const listOfCasts = [...cast, castDetails];
-
       setCast(listOfCasts);
-      console.log(cast);
       setCastDetails("");
     }
   };
 
-  const retrieveToken = () => {
-    const retrievedToken: string | null =
-      sessionStorage.getItem("movieListToken");
-    console.log("i'm the token in useEffect : ", retrievedToken);
-    return retrievedToken;
-  };
-
-  useEffect(() => {
-    const retrievedToken: string | null = retrieveToken();
-    setAdminToken(retrievedToken);
-  }, []);
-
   const addMovie = async () => {
     console.log(newMovie);
-    newMovie.cast = cast;
+    dispatch(addAMovie({ ...newMovie, cast: cast }));
     console.log(newMovie);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/movielistapp/movieCreation",
+        `${Base_Url}/api/v1/movielistapp/movieCreation`,
         newMovie,
         {
           headers: {
@@ -124,23 +90,18 @@ export const AddAMovie: React.FC = () => {
           },
         }
       );
-
-      console.log(response);
-      console.log(response.data);
       if (response.data.status === 201) {
-        toast.success("Movie added successfully");
+        toast.success(response.data.data);
       }
     } catch (error: any) {
-      console.log("Error connecting to the server", error);
+      dispatch(rollBackMovie(newMovie));
       if (error && error.response.status && error.response.status === 401) {
-        console.log("I'm the error : ", error.response.data);
         toast.error(error.response.data.error.data);
       } else {
         toast.error(error.response.data.data);
       }
     }
   };
-
   return (
     <div className="mainContainerForAddMovie">
       <TopNav />
@@ -151,10 +112,9 @@ export const AddAMovie: React.FC = () => {
             type="file"
             id="imageId"
             name="movieImage"
-            onChange={uploadImage}
+            onChange={uploadImageToCloudinary}
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="genre">Genre:</label>
           <input
@@ -166,7 +126,6 @@ export const AddAMovie: React.FC = () => {
             onChange={handleChange}
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="director">Director:</label>
           <input
@@ -178,7 +137,6 @@ export const AddAMovie: React.FC = () => {
             onChange={handleChange}
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="title">Title:</label>
           <input
@@ -219,7 +177,7 @@ export const AddAMovie: React.FC = () => {
             id="castId"
             name="cast"
             placeholder="enter a cast "
-            onChange={handCastDetails}
+            onChange={handleCastDetails}
           />
           <br />
           <button className="addcastBtn" onClick={addToListOfCast}>
@@ -231,7 +189,6 @@ export const AddAMovie: React.FC = () => {
       <button className="addMovieBtn" onClick={addMovie}>
         Add Movie{" "}
       </button>
-
       <br />
       <br />
       <br />

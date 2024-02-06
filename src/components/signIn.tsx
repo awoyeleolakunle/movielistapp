@@ -7,6 +7,9 @@ import Footer from "../reusableComponents/footer/footer";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { Base_Url } from "../config/appConfig";
+import { handleInputChange } from "../reusableComponents/handleChange";
+import { ERROR_MESSAGE } from "../reusableComponents/errorHandling";
 
 export interface LoginDetails {
   emailAddress: string;
@@ -22,16 +25,11 @@ export const Login: React.FC = () => {
   const navigate = useNavigate();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setLoginDetails((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    handleInputChange(event, setLoginDetails);
   };
 
   const decodeToken = (token: string) => {
     const decodedToken: any = jwtDecode(token);
-    console.log("I'm the decoded token :", decodedToken);
 
     if (decodedToken.accessTypes[0] === "ADMIN") {
       sessionStorage.setItem("movieListToken", token);
@@ -44,18 +42,23 @@ export const Login: React.FC = () => {
   const loginUser = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/movielistapp/login",
+        `${Base_Url}/api/v1/movielistapp/login`,
         loginDetails
       );
       console.log(response);
       console.log(response.data);
       if (response.data.status === 200) {
         decodeToken(response.data.data);
-        toast.success("Movie added successfully");
       }
     } catch (error: any) {
-      if (error.response.data.status === 400) {
+      if (
+        error &&
+        error.response.data.status &&
+        error.response.data.status === 400
+      ) {
         toast.error(error.response.data.data);
+      } else {
+        toast.error(ERROR_MESSAGE.NETWORK_FAILED);
       }
     }
   };

@@ -1,9 +1,9 @@
 import "./styles/App.css";
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { MovieList } from "./components/movies";
+import { MovieList } from "./components/movieComponent/movieDisplayComponent/movies";
 import { SelectedMovie } from "./components/selectedMovie";
-import { AddAMovie } from "./components/addMovie";
+import { AddAMovie } from "./components/movieComponent/addMovieComponents/addMovie";
 import { RegisterUser } from "./components/registration";
 import { Login } from "./components/signIn";
 

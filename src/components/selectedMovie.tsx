@@ -4,18 +4,18 @@ import "../components/selectedMoviePage.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { addMovie } from "../store/actions";
+import { selectedMovie } from "../store/actions";
 import TopNav from "../reusableComponents/topNav/topNav";
 import Footer from "../reusableComponents/footer/footer";
+import { Base_Url } from "../config/appConfig";
 
 export const SelectedMovie: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const foundMovie = useSelector(
     (state: RootState) => state.movie?.selectedMovie
   );
-  const navigate = useNavigate();
-  console.log("i'm here");
 
   useEffect(() => {
     const querryParam = new URLSearchParams(window.location.search);
@@ -24,14 +24,14 @@ export const SelectedMovie: React.FC = () => {
     const fetchMovies = async () => {
       const cleanFoundParam = foundParam?.replace(/"/g, "");
       const response = await axios.get(
-        `http://localhost:5000/api/v1/movielistapp/findMovieByTitle?title=${cleanFoundParam}`
+        `${Base_Url}/api/v1/movielistapp/findMovieByTitle?title=${cleanFoundParam}`
       );
       console.log("I'm the found data ", response.data.data);
-      dispatch(addMovie(response.data.data));
+      dispatch(selectedMovie(response.data.data));
     };
 
     fetchMovies();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="mainContainer2">
