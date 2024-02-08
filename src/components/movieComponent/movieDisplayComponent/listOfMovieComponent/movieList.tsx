@@ -6,7 +6,7 @@ import { Movie } from "../movieItem/movieItemInterface";
 import { RootState } from "../../../../store/store";
 import { useMovieDetailsNavigation } from "../listOfMovieComponent/movieListLogic";
 import { ThunkAction } from "redux-thunk";
-import { Action, UnknownAction } from "redux";
+import { Action } from "redux";
 
 interface movieListProps {
   fetchMovies: () =>
@@ -16,7 +16,7 @@ interface movieListProps {
 
 const MovieList: React.FC<movieListProps> = ({ fetchMovies }) => {
   const dispatch = useDispatch();
-  console.log("I got here too");
+
   const showSelectedMovieDetails = useMovieDetailsNavigation();
   const listOfMovies: Movie[] = useSelector(
     (state: RootState) => state.movie.listOfMovies ?? []
@@ -24,13 +24,11 @@ const MovieList: React.FC<movieListProps> = ({ fetchMovies }) => {
   console.log(listOfMovies);
 
   useEffect(() => {
-    console.log("I'm in here");
     dispatch(fetchMovies());
-    console.log("I called the function ");
   }, [dispatch]);
 
   return (
-    <div style={{ color: "rgb(255,255,255)" }}>
+    <div className="listMainDiv" style={{ color: "rgb(255,255,255)" }}>
       <ul className="listToBeDisplayed">
         {listOfMovies.map((movie: Movie) => (
           <MovieItem

@@ -1,5 +1,5 @@
 import React from "react";
-import "../moviePages/index.css";
+import "./index.css";
 import TopNav from "../../reusableComponents/topNav/topNav";
 import AfterNav from "../../components/movieComponent/movieDisplayComponent/afterNavComponent/afterNav";
 import Footer from "../../reusableComponents/footer/footer";
@@ -20,6 +20,8 @@ const MoviePage: React.FC = () => {
       <br />
       <br />
       <BeforeFooter />
+      <br />
+      <br />
       <Footer />
     </div>
   );

@@ -1,0 +1,38 @@
+.listToBeDisplayedInSelectedPage {
+  place-items: center;
+  overflow: hidden;
+  max-height: 600px;
+
+  width: 100%;
+  display: flex;
+  z-index: 2;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.selectedMovieImage {
+  width: 62%;
+  max-width: 62%;
+  height: 500px;
+  object-fit: cover;
+  margin-top: -7.5%;
+  flex-wrap: wrap;
+}
+
+.otherMovieDetailsN {
+  margin-top: 10%;
+  width: 35%;
+}
+
+.otherMovieDetailsN p {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.02cm;
+  line-height: 2;
+  color: rgb(255, 255, 255);
+  text-align: left;
+  width: 70%;
+  margin: auto;
+  margin-left: 2%;
+}

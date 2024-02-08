@@ -1,14 +1,10 @@
-import axios from "axios";
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "./store";
-import { Action, UnknownAction } from "redux";
-import { Base_Url } from "../config/appConfig";
-import { addListOfMovies } from "./actions";
-import { ERROR_MESSAGE } from "../reusableComponents/errorHandling";
+import { Action } from "redux";
+import { addListOfMovies, selectedMovie } from "./actions";
 import fetchAllMovies from "../api/movieApis/fetchMoviesApi";
 import { Movie } from "../components/movieComponent/addMovieComponents/addMovie";
-import { useDispatch } from "react-redux";
-import React from "react";
+import fetchAMovie from "../api/movieApis/fectchAMovieApi";
 
 export const fetchMovies = (): ThunkAction<
   void,
@@ -23,13 +19,28 @@ export const fetchMovies = (): ThunkAction<
       const movies: Movie[] = response;
       dispatch(addListOfMovies(movies));
     } catch (error) {
-      console.error("Error fetching movies:", error);
+      console.error(error);
     }
-    // try {
-    //   const listOfFetchedMovies: Movie[] = await fetchAllMovies();
-    //   dispatch(addListOfMovies(listOfFetchedMovies));
-    // } catch (error) {
-    //   console.log(ERROR_MESSAGE.ERROR_FETCHING);
-    // }
+  };
+};
+export const fetchAMovieFromBackend = (): ThunkAction<
+  void,
+  RootState,
+  unknown,
+  Action<string>
+> => {
+  return async (dispatch): Promise<void> => {
+    try {
+      const querryParam = new URLSearchParams(window.location.search);
+      const foundParam = querryParam.get("movieid");
+      if (foundParam) {
+        console.log("I got here");
+        const cleanedFoundParam = foundParam.replace(/"/g, "");
+        const fetchedMovie: Movie = await fetchAMovie(cleanedFoundParam);
+        dispatch(selectedMovie(fetchedMovie));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 };

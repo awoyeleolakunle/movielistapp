@@ -1,10 +1,8 @@
-// actions.ts
 import { Movie } from "../components/movieComponent/addMovieComponents/addMovie";
-
-export const SELECT_A_MOVIE = "SELECT_A_MOVIE";
-export const ADD_MOVIES = "ADD_MOVIES";
-export const ADD_A_MOVIE = "ADD_A_MOVIE";
-export const ROLLBACK_MOVIE = "ROLLBACK_MOVIE";
+export const SELECT_A_MOVIE: string = "SELECT_A_MOVIE";
+export const ADD_MOVIES: string = "ADD_MOVIES";
+export const ADD_A_MOVIE: string = "ADD_A_MOVIE";
+export const ROLLBACK_MOVIE: string = "ROLLBACK_MOVIE";
 
 export const addAMovie = (movie: Movie) => ({
   type: ADD_A_MOVIE,

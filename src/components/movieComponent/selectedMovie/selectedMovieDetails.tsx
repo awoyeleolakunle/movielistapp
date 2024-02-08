@@ -1,26 +1,28 @@
-import React, { useEffect } from "react";
-import axios from "axios";
-import "../components/selectedMoviePage.css";
-import { useNavigate } from "react-router-dom";
+import "../selectedMovie/movieDetails.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/store";
-import { selectedMovie } from "../store/actions";
-import TopNav from "../reusableComponents/topNav/topNav";
-import Footer from "../reusableComponents/footer/footer";
-import { Base_Url } from "../config/appConfig";
-import { Movie } from "./movieComponent/addMovieComponents/addMovie";
+import { RootState } from "../../../store/store";
+import React, { useEffect } from "react";
+import { ThunkAction } from "redux-thunk";
+import { Action } from "redux";
 
-export const SelectedMovie: React.FC = () => {
+interface MovieFetched {
+  fetchAMovieFromBackend: () =>
+    | ThunkAction<void, RootState, unknown, Action<string>>
+    | any;
+}
+
+const MovieDetails: React.FC<MovieFetched> = ({ fetchAMovieFromBackend }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const foundMovie = useSelector(
     (state: RootState) => state.movie?.selectedMovie
   );
 
+  useEffect(() => {
+    dispatch(fetchAMovieFromBackend());
+  }, [fetchAMovieFromBackend]);
+
   return (
-    <div className="mainContainer2">
-      <TopNav />
+    <div>
       {foundMovie && (
         <div className="listToBeDisplayedInSelectedPage">
           <img
@@ -47,18 +49,8 @@ export const SelectedMovie: React.FC = () => {
           </div>
         </div>
       )}
-      <button className="btn">Download Now</button>
-      <br />
-      <br />
-      <br />
-
-      <button className="prevBtn" onClick={() => navigate("/")}>
-        Go back to previous page
-      </button>
-      <br />
-      <br />
-      <br />
-      <Footer />
     </div>
   );
 };
+
+export default MovieDetails;
