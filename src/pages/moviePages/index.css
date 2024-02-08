@@ -10,3 +10,20 @@ body {
   height: 100vh;
   background-color: rgb(24, 24, 24);
 }
+
+@media screen and (max-width: 480px) {
+  body {
+    margin: 0%;
+    padding: 0%;
+    background-color: rgb(24, 24, 24);
+    height: auto;
+  }
+
+  .homePageContainer {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 100vh;
+    background-color: rgb(24, 24, 24);
+  }
+}

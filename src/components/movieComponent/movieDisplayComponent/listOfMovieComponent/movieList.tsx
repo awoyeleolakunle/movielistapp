@@ -4,23 +4,30 @@ import MovieItem from "../movieItem/movieItem";
 import { useDispatch, useSelector } from "react-redux";
 import { Movie } from "../movieItem/movieItemInterface";
 import { RootState } from "../../../../store/store";
-import {
-  useMovieDetailsNavigation,
-  useFetchMovies,
-} from "../listOfMovieComponent/movieListLogic";
+import { useMovieDetailsNavigation } from "../listOfMovieComponent/movieListLogic";
+import { ThunkAction } from "redux-thunk";
+import { Action, UnknownAction } from "redux";
 
 interface movieListProps {
-  fetchMovies: () => void;
+  fetchMovies: () =>
+    | ThunkAction<void, RootState, unknown, Action<string>>
+    | any;
 }
+
 const MovieList: React.FC<movieListProps> = ({ fetchMovies }) => {
+  const dispatch = useDispatch();
+  console.log("I got here too");
   const showSelectedMovieDetails = useMovieDetailsNavigation();
   const listOfMovies: Movie[] = useSelector(
     (state: RootState) => state.movie.listOfMovies ?? []
   );
+  console.log(listOfMovies);
 
   useEffect(() => {
-    fetchMovies();
-  }, [fetchMovies]);
+    console.log("I'm in here");
+    dispatch(fetchMovies());
+    console.log("I called the function ");
+  }, [dispatch]);
 
   return (
     <div style={{ color: "rgb(255,255,255)" }}>

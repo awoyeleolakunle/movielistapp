@@ -94,7 +94,7 @@ export const MovieList = () => {
       <br />
       <br />
 
-      <div className="afterMovieDisplayDiv">
+      {/* <div className="afterMovieDisplayDiv">
         <h1>There is even more to watch</h1>
         <br></br>
         <p>
@@ -102,7 +102,7 @@ export const MovieList = () => {
         </p>
         <p>shows, anime, award-winning Bained originals, and more. Watch as</p>
         <p>much as you want, anytime you want.</p>
-      </div>
+      </div> */}
       <br></br>
       <button className="joinNowBtn2">Join Now</button>
       <br />

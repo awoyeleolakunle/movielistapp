@@ -124,7 +124,7 @@
   height: 100vh;
   background-color: rgb(24, 24, 24);
 } */
-
+/* 
 .afterMovieDisplayDiv {
   margin: auto;
   color: rgb(255, 255, 255);
@@ -136,7 +136,7 @@
 }
 .afterMovieDisplayDiv p {
   font-size: 16px;
-}
+} */
 
 .joinNowBtn2 {
   background-color: rgb(227, 8, 19);
@@ -150,14 +150,14 @@
   border-radius: 3px;
 }
 
-.listToBeDisplayed {
+/* .listToBeDisplayed {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 15px;
   justify-content: center;
   margin-left: 2%;
-}
+} */
 
 .otherMovieDetails p {
   font-size: 16px;
@@ -168,14 +168,14 @@
   text-align: left;
 }
 
-.bainedLink {
+/* .bainedLink {
   font-size: 16px;
   font-weight: 400;
   font-family: Arial, Helvetica, sans-serif;
   text-align: left;
   margin-left: -38%;
   color: rgb(100, 100, 100);
-}
+} */
 
 /* @media screen and (max-width: 480px) {
   body {

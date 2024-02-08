@@ -1,0 +1,27 @@
+.afterMovieDisplayDiv {
+  margin: auto;
+  color: rgb(255, 255, 255);
+}
+
+.afterMovieDisplayDiv {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.afterMovieDisplayDiv p {
+  font-size: 16px;
+}
+
+@media screen and (max-width: 480px) {
+  .afterMovieDisplayDiv {
+    margin: auto;
+    color: rgb(255, 255, 255);
+  }
+
+  .afterMovieDisplayDiv {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .afterMovieDisplayDiv p {
+    font-size: 16px;
+  }
+}
