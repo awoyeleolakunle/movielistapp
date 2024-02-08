@@ -6,7 +6,7 @@ import Footer from "../../reusableComponents/footer/footer";
 import MovieList from "../../components/movieComponent/movieDisplayComponent/listOfMovieComponent/movieList";
 import AfterMovieDisplayDiv from "../../components/movieComponent/movieDisplayComponent/afterMovieListDisplay/afterListOfMovieDisplay";
 import BeforeFooter from "../../components/movieComponent/movieDisplayComponent/beforeFooterDiv/beforeFooter";
-import { fetchMovies } from "../../store/reduxCreators";
+import { fetchMovies } from "../../store/thunkCreator";
 const MoviePage: React.FC = () => {
   return (
     <div className="homePageContainer">

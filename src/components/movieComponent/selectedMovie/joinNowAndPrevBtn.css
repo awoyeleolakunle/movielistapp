@@ -1,0 +1,30 @@
+.btn {
+  background-color: rgb(227, 8, 19);
+  border: 2px solid rgb(227, 8, 19);
+  width: 15%;
+  color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  height: 50px;
+  border-radius: 3px;
+  /* margin-top: -30%; */
+}
+
+.btn :hover {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 2px #ff00ff, 0 0 5px #ff00ff, 0 0 8px #ff00ff;
+}
+
+.prevBtn {
+  background-color: rgb(227, 8, 19);
+  border: 2px solid rgb(227, 8, 19);
+  width: 15%;
+  color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  height: 50px;
+  border-radius: 3px;
+}
