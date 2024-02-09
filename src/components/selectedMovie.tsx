@@ -8,7 +8,7 @@ import { selectedMovie } from "../store/actions";
 import TopNav from "../reusableComponents/topNav/topNav";
 import Footer from "../reusableComponents/footer/footer";
 import { Base_Url } from "../config/appConfig";
-import { Movie } from "./movieComponent/addMovieComponents/addMovie";
+import { Movie } from "./movieComponent/movieInterface";
 
 export const SelectedMovie: React.FC = () => {
   const dispatch = useDispatch();

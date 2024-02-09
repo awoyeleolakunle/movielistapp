@@ -8,6 +8,7 @@ import { RegisterUser } from "./components/registration";
 import { Login } from "./components/signIn";
 import MoviePage from "./pages/moviesDisplayPage/index";
 import SelectedMoviePage from "./pages/selectedMoviePage/selectedMovie";
+import AddAMoviePage from "./pages/AddMoviePage";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MoviePage />} />
           <Route path="/selectedMoviePage" element={<SelectedMoviePage />} />
-          <Route path="/addMovie" element={<AddAMovie />} />
+          <Route path="/addMovie" element={<AddAMoviePage />} />
           <Route path="/registerUser" element={<RegisterUser />} />
           <Route path="/login" element={<Login />} />
         </Routes>

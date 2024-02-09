@@ -3,7 +3,7 @@ import { RootState } from "./store";
 import { Action } from "redux";
 import { addListOfMovies, selectedMovie } from "./actions";
 import fetchAllMovies from "../api/movieApis/fetchMoviesApi";
-import { Movie } from "../components/movieComponent/addMovieComponents/addMovie";
+import { Movie } from "../components/movieComponent/movieInterface";
 import fetchAMovie from "../api/movieApis/fectchAMovieApi";
 
 export const fetchMovies = (): ThunkAction<

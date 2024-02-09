@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { Movie } from "../components/movieComponent/addMovieComponents/addMovie";
+import { Movie } from "../components/movieComponent/movieInterface";
 
 interface MovieState {
   listOfMovies: Movie[];

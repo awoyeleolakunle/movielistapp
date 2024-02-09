@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./movie.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Movie } from "../addMovieComponents/addMovie";
+import { Movie } from "../movieInterface";
 import { addListOfMovies } from "../../../store/actions";
 import TopNav from "../../../reusableComponents/topNav/topNav";
 import Footer from "../../../reusableComponents/footer/footer";

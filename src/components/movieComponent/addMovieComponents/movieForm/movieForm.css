@@ -1,0 +1,11 @@
+.addMovieDiv {
+  justify-content: center;
+  text-align: left;
+  margin: auto;
+  margin-top: 5%;
+  width: 40%;
+  color: #74252a;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+  border-radius: 6px;
+  padding-bottom: 15px;
+}

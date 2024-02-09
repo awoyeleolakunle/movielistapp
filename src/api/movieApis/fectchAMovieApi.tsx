@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Base_Url } from "../../config/appConfig";
-import { Movie } from "../../components/movieComponent/addMovieComponents/addMovie";
+import { Movie } from "../../components/movieComponent/movieInterface";
 import { ERROR_MESSAGE } from "../../reusableComponents/errorHandling";
 
 const fetchAMovie = async (cleanedFoundParam: string): Promise<Movie> => {

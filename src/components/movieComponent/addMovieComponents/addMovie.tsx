@@ -11,17 +11,7 @@ import { fetchToken } from "../../../reusableComponents/handleRetrievedToken";
 import { Base_Url } from "../../../config/appConfig";
 import { useDispatch } from "react-redux";
 import { addAMovie, rollBackMovie } from "../../../store/actions";
-
-export interface Movie {
-  _id?: string;
-  imageUrl: string;
-  genre: string;
-  director: string;
-  title: string;
-  description: string;
-  pgRatings: string;
-  cast: string[];
-}
+import { Movie } from "../movieInterface";
 
 export const AddAMovie: React.FC = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);

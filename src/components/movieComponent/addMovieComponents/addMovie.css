@@ -59,7 +59,7 @@
   border-radius: 3px;
 }
 
-.addcastBtn {
+/* .addcastBtn {
   margin-left: 17%;
   background-color: rgb(227, 8, 19);
   border: 2px solid rgb(227, 8, 19);
@@ -68,7 +68,7 @@
   font-weight: 500;
   border-radius: 3px;
   width: 20%;
-}
+} */
 
 @media screen and (max-width: 480px) {
   .mainContainerForAddMovie {

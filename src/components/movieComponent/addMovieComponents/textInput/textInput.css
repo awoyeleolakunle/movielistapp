@@ -1,0 +1,16 @@
+.form-group label {
+  width: 100%;
+  display: inline-block;
+  text-decoration: solid;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  margin-left: 17%;
+}
+
+.form-group input {
+  width: 65%;
+  height: 50px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-left: 17%;
+}
