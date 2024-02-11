@@ -1,17 +1,10 @@
 import axios from "axios";
 import { Base_Url } from "../../config/appConfig";
 import { Movie } from "../../components/movieComponent/movieInterface";
-import { handleRetrievedToken } from "../../reusableComponents/handleRetrievedToken";
-import { useDispatch } from "react-redux";
-import { addAMovie } from "../../store/actions";
-import { rollBackMovie } from "../../store/actions";
+import { getCookie } from "../../reusableComponents/handleRetrievedToken";
 
-const addMovie = async (newMovie: Movie) => {
-  const adminToken: string | null = await handleRetrievedToken();
-  console.log(newMovie);
-  console.log(newMovie);
-  const dispatch = useDispatch();
-
+const addMovie = async (newMovie: Movie): Promise<any> => {
+  const adminToken: string | null = getCookie("movieListToken");
   try {
     const response = await axios.post(
       `${Base_Url}/api/v1/movielistapp/movieCreation`,
@@ -23,14 +16,12 @@ const addMovie = async (newMovie: Movie) => {
         },
       }
     );
-    dispatch(addAMovie(newMovie));
-    return response.data.data;
+    console.log("I'm the response in the api. ", response);
+    return response;
   } catch (error: any) {
-    dispatch(rollBackMovie(newMovie));
-    // if (error && error.response.status && error.response.status === 401) {
-    //   toast.error(error.response.data.error.data);
-    // } else {
-    //   toast.error(error.response.data.data);
-    // }
+    console.log(error.response.data.data);
+    throw new Error(error.response.data.data);
   }
 };
+
+export default addMovie;

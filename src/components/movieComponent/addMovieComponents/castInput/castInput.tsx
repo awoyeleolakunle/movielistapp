@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../castInput/castInput.css";
 import TextInput from "../textInput/textInput";
 import { EMPTY_STRING } from "../../../../constants";
+import AddToCastBtn from "../addToCastButton/addToCastBtn";
 
 interface CastInputProps {
   onAddToCast: (castName: string) => void;
@@ -12,7 +13,6 @@ const CastInput: React.FC<CastInputProps> = ({ onAddToCast }) => {
 
   const handleAddToCast = () => {
     if (castName.trim() !== EMPTY_STRING) {
-      onAddToCast(castName.trim());
       setCastName(EMPTY_STRING);
     }
   };
@@ -25,9 +25,11 @@ const CastInput: React.FC<CastInputProps> = ({ onAddToCast }) => {
         value={castName}
         onChange={(e) => setCastName(e.target.value)}
       />
-      <button className="addcastBtn" onClick={handleAddToCast}>
-        Add to Cast
-      </button>
+      <AddToCastBtn
+        castName={castName}
+        onAddToCast={onAddToCast}
+        setCastName={() => setCastName(EMPTY_STRING)}
+      />
     </div>
   );
 };

@@ -10,7 +10,10 @@ import handleImageUpload from "../../../reusableComponents/handleImageUpload";
 import { fetchToken } from "../../../reusableComponents/handleRetrievedToken";
 import { Base_Url } from "../../../config/appConfig";
 import { useDispatch } from "react-redux";
-import { addAMovie, rollBackMovie } from "../../../store/actions";
+import {
+  addAMovie,
+  rollBackMovie,
+} from "../../../store/movieStore/movieActions";
 import { Movie } from "../movieInterface";
 
 export const AddAMovie: React.FC = () => {

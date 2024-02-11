@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
-import { Movie } from "../components/movieComponent/movieInterface";
+import { Movie } from "../../components/movieComponent/movieInterface";
+import authReducer from "../userAuthStore/authReducers";
 
 interface MovieState {
   listOfMovies: Movie[];
@@ -41,4 +42,5 @@ const movieReducer = (state = initialMovieState, action: any) => {
 
 export const rootReducer = combineReducers({
   movie: movieReducer,
+  authUser: authReducer,
 });

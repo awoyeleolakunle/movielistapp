@@ -7,8 +7,12 @@ import { Movie } from "../../movieInterface";
 import AddAMovieButton from "../addMovieButton/addAMovieBtn";
 import CastInput from "../castInput/castInput";
 import { EMPTY_STRING } from "../../../../constants";
+import { useDispatch } from "react-redux";
 
-const MovieForm: React.FC = () => {
+interface addMovieProps {
+  addNewMovie: (movie: Movie) => any;
+}
+const MovieForm: React.FC<addMovieProps> = ({ addNewMovie }) => {
   const [newMovie, setNewMovie] = useState<Movie>({
     imageUrl: EMPTY_STRING,
     genre: EMPTY_STRING,
@@ -19,8 +23,12 @@ const MovieForm: React.FC = () => {
     cast: [],
   });
 
+  const dispatch = useDispatch();
+
   const handleAddAMovie = () => {
+    console.log("I got here before making the call ");
     console.log(newMovie);
+    dispatch(addNewMovie(newMovie));
   };
 
   return (
@@ -69,8 +77,7 @@ const MovieForm: React.FC = () => {
         />
       </div>
       <br />
-
-      <AddAMovieButton onClick={handleAddAMovie} />
+      <AddAMovieButton addMovie={handleAddAMovie} />
     </div>
   );
 };

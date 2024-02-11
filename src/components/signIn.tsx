@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { Base_Url } from "../config/appConfig";
 import { handleInputChange } from "../reusableComponents/handleChange";
 import { ERROR_MESSAGE } from "../reusableComponents/errorHandling";
+import { useDispatch } from "react-redux";
+import { loginUserSuccess } from "../store/userAuthStore/authActions";
 
 export interface LoginDetails {
   emailAddress: string;
@@ -23,6 +25,7 @@ export const Login: React.FC = () => {
   });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     handleInputChange(event, setLoginDetails);
@@ -30,12 +33,8 @@ export const Login: React.FC = () => {
 
   const decodeToken = (token: string) => {
     const decodedToken: any = jwtDecode(token);
-
-    if (decodedToken.accessTypes[0] === "ADMIN") {
-      sessionStorage.setItem("movieListToken", token);
-    } else {
-      sessionStorage.setItem("movieListToken", token);
-    }
+    console.log(" I'm the decoded token ", decodeToken);
+    dispatch(loginUserSuccess(token));
     navigate("/");
   };
 

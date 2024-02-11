@@ -4,7 +4,7 @@ import "../components/selectedMoviePage.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { selectedMovie } from "../store/actions";
+import { selectedMovie } from "../store/movieStore/movieActions";
 import TopNav from "../reusableComponents/topNav/topNav";
 import Footer from "../reusableComponents/footer/footer";
 import { Base_Url } from "../config/appConfig";

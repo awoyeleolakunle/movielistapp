@@ -2,13 +2,13 @@ import React from "react";
 import "../addMovieButton/addAMovieBtn.css";
 
 interface AddAMovieButtonProps {
-  onClick: () => void;
+  addMovie: () => void;
 }
 
-const AddAMovieButton: React.FC<AddAMovieButtonProps> = ({ onClick }) => {
+const AddAMovieButton: React.FC<AddAMovieButtonProps> = ({ addMovie }) => {
   return (
     <div>
-      <button className="addMovieBtn" onClick={onClick}>
+      <button className="addMovieBtn" onClick={addMovie}>
         Add Movie
       </button>
     </div>
