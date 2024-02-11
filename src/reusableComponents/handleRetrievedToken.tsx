@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { EMPTY_STRING, ONE, ZERO, SEVEN } from "../constants";
+import { jwtDecode } from "jwt-decode";
 
 export const handleRetrievedToken = (): Promise<string | null> => {
   return Promise.resolve(sessionStorage.getItem("movieListToken"));
@@ -37,4 +38,8 @@ export const getCookie = (name: string): string | null => {
   }
 
   return EMPTY_STRING;
+};
+
+export const DecodeToken = (token: string): Promise<void> => {
+  return jwtDecode(token);
 };

@@ -5,7 +5,7 @@ import { MovieList } from "./components/movieComponent/movieDisplayComponent/mov
 import { SelectedMovie } from "./components/selectedMovie";
 import { AddAMovie } from "./components/movieComponent/addMovieComponents/addMovie";
 import { RegisterUser } from "./components/registration";
-import { Login } from "./components/signIn";
+import Login from "./pages/loginPage";
 import MoviePage from "./pages/moviesDisplayPage/index";
 import SelectedMoviePage from "./pages/selectedMoviePage/selectedMovie";
 import AddAMoviePage from "./pages/AddMoviePage";

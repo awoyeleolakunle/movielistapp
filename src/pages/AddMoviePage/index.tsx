@@ -16,7 +16,7 @@ const AddAMoviePage: React.FC = () => {
       <br />
       <br />
       <Footer />
-      <ToastContainer />
+      <ToastContainer position="top-center" />
     </div>
   );
 };

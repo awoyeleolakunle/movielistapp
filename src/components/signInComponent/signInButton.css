@@ -1,0 +1,12 @@
+.sign-In-Button {
+  background-color: rgb(227, 8, 19);
+  border: 2px solid rgb(227, 8, 19);
+  width: 30%;
+  color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+
+  font-size: 16px;
+  border-radius: 3px;
+  line-height: 2;
+}

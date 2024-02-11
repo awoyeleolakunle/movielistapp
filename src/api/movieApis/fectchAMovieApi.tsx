@@ -10,8 +10,7 @@ const fetchAMovie = async (cleanedFoundParam: string): Promise<Movie> => {
     );
     return response.data.data;
   } catch (error) {
-    console.log(ERROR_MESSAGE.ERROR_FETCHING);
-    throw new Error();
+    throw new Error(ERROR_MESSAGE.ERROR_FETCHING);
   }
 };
 

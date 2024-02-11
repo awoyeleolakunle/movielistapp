@@ -47,7 +47,7 @@ export const fetchAMovieFromBackend = (): ThunkAction<
         dispatch(selectedMovie(fetchedMovie));
       }
     } catch (error: any) {
-      toast.error(error);
+      toast.error(error.message);
     }
   };
 };
@@ -62,6 +62,7 @@ export const addNewMovie = (
       toast.success(response.data.data);
     } catch (error: any) {
       dispatch(rollBackMovie(newMovie));
+      console.log(error);
       toast.error(error.message);
     }
   };
