@@ -6,6 +6,7 @@ import login from "../../api/authApis/loginApi";
 import { loginUserSuccess } from "./authActions";
 import { toast } from "react-toastify";
 import { DecodeToken } from "../../reusableComponents/handleRetrievedToken";
+import { HOME_PAGE } from "../../constants";
 
 export const loginUser = (
   loginDetails: LoginDetails,
@@ -17,7 +18,7 @@ export const loginUser = (
       if (response) {
         dispatch(loginUserSuccess(response));
         DecodeToken(response);
-        navigate("/");
+        navigate(HOME_PAGE);
       }
     } catch (error: any) {
       toast.error(error.message);

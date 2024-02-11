@@ -3,9 +3,10 @@ import { Base_Url } from "../../config/appConfig";
 import { Movie } from "../../components/movieComponent/movieInterface";
 import { getCookie } from "../../reusableComponents/handleRetrievedToken";
 import { FOUR_ZERO_ONE } from "../../constants";
+import { MOVIE_LIST_TOKEN } from "../../config/appConfig";
 
 const addMovie = async (newMovie: Movie): Promise<any> => {
-  const adminToken: string | null = getCookie("movieListToken");
+  const adminToken: string | null = getCookie(MOVIE_LIST_TOKEN);
   try {
     const response = await axios.post(
       `${Base_Url}/api/v1/movielistapp/movieCreation`,

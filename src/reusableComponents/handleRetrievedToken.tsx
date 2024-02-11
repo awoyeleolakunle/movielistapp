@@ -1,9 +1,17 @@
 import { Dispatch, SetStateAction } from "react";
-import { EMPTY_STRING, ONE, ZERO, SEVEN } from "../constants";
+import {
+  EMPTY_STRING,
+  ONE,
+  ZERO,
+  SEVEN,
+  EQUALS_TO,
+  BY_SEMI_COLON,
+} from "../constants";
+import { MOVIE_LIST_TOKEN } from "../config/appConfig";
 import { jwtDecode } from "jwt-decode";
 
 export const handleRetrievedToken = (): Promise<string | null> => {
-  return Promise.resolve(sessionStorage.getItem("movieListToken"));
+  return Promise.resolve(sessionStorage.getItem(MOVIE_LIST_TOKEN));
 };
 
 export const fetchToken = async (setState: Dispatch<SetStateAction<any>>) => {
@@ -23,15 +31,14 @@ export const setCookie = (
 };
 
 export const getCookie = (name: string): string | null => {
-  const cookieName = name + "=";
+  const cookieName = name + EQUALS_TO;
   const decodedCookie = decodeURIComponent(document.cookie);
-  const cookieArray = decodedCookie.split(";");
-  console.log("All cookies:", cookieArray);
+  const cookieArray = decodedCookie.split(BY_SEMI_COLON);
   for (let i = ZERO; i < cookieArray.length; i++) {
     let cookie = cookieArray[i];
-    while (cookie.charAt(ZERO) == EMPTY_STRING) {
-      cookie = cookie.substring(ONE);
-    }
+    // while (cookie.charAt(ZERO) == EMPTY_STRING) {
+    //   cookie = cookie.substring(ONE);
+    // }
     if (cookie.indexOf(cookieName) === ZERO) {
       return cookie.substring(cookieName.length, cookie.length);
     }

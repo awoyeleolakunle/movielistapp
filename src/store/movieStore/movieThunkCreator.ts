@@ -12,7 +12,7 @@ import { Movie } from "../../components/movieComponent/movieInterface";
 import fetchAMovie from "../../api/movieApis/fectchAMovieApi";
 import addMovie from "../../api/movieApis/addAMovieApi";
 import { toast } from "react-toastify";
-import { EMPTY_STRING } from "../../constants";
+import { EMPTY_STRING, MOVIE_ID } from "../../constants";
 
 export const fetchMovies = (): ThunkAction<
   void,
@@ -40,7 +40,7 @@ export const fetchAMovieFromBackend = (): ThunkAction<
   return async (dispatch): Promise<void> => {
     try {
       const querryParam = new URLSearchParams(window.location.search);
-      const foundParam = querryParam.get("movieid");
+      const foundParam = querryParam.get(MOVIE_ID);
       if (foundParam) {
         const cleanedFoundParam = foundParam.replace(/"/g, EMPTY_STRING);
         const fetchedMovie: Movie = await fetchAMovie(cleanedFoundParam);
@@ -62,7 +62,6 @@ export const addNewMovie = (
       toast.success(response.data.data);
     } catch (error: any) {
       dispatch(rollBackMovie(newMovie));
-      console.log(error);
       toast.error(error.message);
     }
   };

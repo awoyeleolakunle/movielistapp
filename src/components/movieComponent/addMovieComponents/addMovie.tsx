@@ -15,6 +15,7 @@ import {
   rollBackMovie,
 } from "../../../store/movieStore/movieActions";
 import { Movie } from "../movieInterface";
+import { EMPTY_STRING } from "../../../constants";
 
 export const AddAMovie: React.FC = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -23,12 +24,12 @@ export const AddAMovie: React.FC = () => {
   const [adminToken, setAdminToken] = useState<string | null>(null);
   const dispatch = useDispatch();
   const [newMovie, setNewMovie] = useState<Movie>({
-    imageUrl: "",
-    genre: "",
-    director: "",
-    title: "",
-    description: "",
-    pgRatings: "",
+    imageUrl: EMPTY_STRING,
+    genre: EMPTY_STRING,
+    director: EMPTY_STRING,
+    title: EMPTY_STRING,
+    description: EMPTY_STRING,
+    pgRatings: EMPTY_STRING,
     cast: cast,
   });
 

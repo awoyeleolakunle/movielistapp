@@ -9,3 +9,6 @@ export const cloudinary_Api: string =
 // export const cloudinary_api_to_persist_image: string =
 //   "https://api.cloudinary.com/v1_1/deokatly1/upload";
 // /
+
+export const CLOUDINARY_UPLOAD_PRESET = "movielistapp";
+export const MOVIE_LIST_TOKEN = "movieListToken";

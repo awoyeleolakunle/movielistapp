@@ -26,8 +26,6 @@ const MovieForm: React.FC<addMovieProps> = ({ addNewMovie }) => {
   const dispatch = useDispatch();
 
   const handleAddAMovie = () => {
-    console.log("I got here before making the call ");
-    console.log(newMovie);
     dispatch(addNewMovie(newMovie));
   };
 

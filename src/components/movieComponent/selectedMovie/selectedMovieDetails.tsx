@@ -4,6 +4,7 @@ import { RootState } from "../../../store/store";
 import React, { useEffect } from "react";
 import { ThunkAction } from "redux-thunk";
 import { Action } from "redux";
+import { BY_COMMA_AND_SPACE } from "../../../constants";
 
 interface MovieFetched {
   fetchAMovieFromBackend: () =>
@@ -45,7 +46,7 @@ const MovieDetails: React.FC<MovieFetched> = ({ fetchAMovieFromBackend }) => {
             <p>Director : {foundMovie.director}</p>
             <p>Description : {foundMovie.description}</p>
             <p>Pg Ratings : {foundMovie.pgRatings} </p>
-            {foundMovie.cast && <p>Casts : {foundMovie.cast.join(", ")}</p>}
+            {foundMovie.cast && <p>Casts : {foundMovie.cast.join(BY_COMMA_AND_SPACE)}</p>}
           </div>
         </div>
       )}

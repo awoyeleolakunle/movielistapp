@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import axios from "axios";
-import { cloudinary_Api } from "../config/appConfig";
+import { cloudinary_Api, CLOUDINARY_UPLOAD_PRESET } from "../config/appConfig";
 import { ZERO } from "../constants";
 
 const handleImageUpload = async (
@@ -12,7 +12,7 @@ const handleImageUpload = async (
     if (imageFile) {
       const formData = new FormData();
       formData.append("file", imageFile);
-      formData.append("upload_preset", "movielistapp");
+      formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
 
       const response = await axios.post(cloudinary_Api, formData);
 

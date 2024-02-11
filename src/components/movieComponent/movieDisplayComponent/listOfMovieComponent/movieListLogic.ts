@@ -4,7 +4,7 @@ export const useMovieDetailsNavigation = () => {
   const navigate = useNavigate();
   const showSelectedMovieDetails = (movieTitle: string) => {
     navigate(
-      `/selectedMoviePage?movieid=${encodeURIComponent(
+      `/selectedMoviePage?movieTitle=${encodeURIComponent(
         JSON.stringify(movieTitle)
       )}`
     );
